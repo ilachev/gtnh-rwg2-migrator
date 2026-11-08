@@ -1,0 +1,12 @@
+allprojects {
+    afterEvaluate { project ->
+        tasks.register('migrationSearch', JavaExec) {
+            dependsOn tasks.named('previewClasses')
+            classpath = sourceSets.preview.runtimeClasspath
+            mainClass = 'rwg2.world.MigrationSearch'
+            maxHeapSize = '2g'
+            jvmArgs '-Djava.awt.headless=true'
+            args providers.gradleProperty('migrationArgs').get().split('\\|') as List
+        }
+    }
+}

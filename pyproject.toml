@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gtnh-rwg2-migrator"
+version = "0.1.0"
+description = "A local migration wizard for preserving GTNH bases while regenerating the overworld with RWG2"
+requires-python = ">=3.11"
+license = {text = "GPL-3.0-or-later"}
+authors = [{name = "Ilia Karachev"}]
+dependencies = []
+
+[project.scripts]
+gtnh-migrate = "gtnh_migrator.__main__:main"
+
+[tool.setuptools.package-data]
+gtnh_migrator = ["web/*", "engine/*"]
