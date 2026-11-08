@@ -396,7 +396,7 @@ def apply(plan, target, client_target='', progress=lambda message: None):
     sh = '#!/bin/sh\nset -eu\ncd "$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"\nexec java -Xms${GTNH_MIN_RAM:-4G} -Xmx${GTNH_MAX_RAM:-6G} @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui\n'
     (stage / 'start-rwg2-trial.sh').write_text(sh)
     (stage / 'start-rwg2-trial.sh').chmod(0o755)
-    (stage / 'start-rwg2-trial.bat').write_text('@echo off\r\ncd /d "%~dp0"\r\njava -Xms4G -Xmx6G @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui\r\npause\r\n')
+    (stage / 'start-rwg2-trial.bat').write_bytes(b'@echo off\r\ncd /d "%~dp0"\r\njava -Xms4G -Xmx6G @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui\r\npause\r\n')
     result = {'server': str(target), 'client': client_result, 'source_server': str(source),
               'backup': str(target / '.migration/world-before-rwg2.tar.gz'),
               'backup_sha256': digest(backup), 'retained_chunks': retained,
